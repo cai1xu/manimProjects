@@ -129,4 +129,9 @@ class problem(Scene):
         self.wait(4)
         self.play(FadeOut(problem),FadeOut(line),FadeOut(MostImportantThing),FadeOut(Proofs),FadeOut(Proofs2),FadeOut(axe1),FadeOut(func1),FadeOut(grp1))
         #Proof End
+        end = TextMobject("Made by Cai1Hsu with ","Manim")
+        end[1].set_color_by_gradient("#58C4DD","#8B4513")
+        self.play(FadeIn(end))
+        self.wait()
+        self.play(Uncreate(end))
 
