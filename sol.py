@@ -21,20 +21,12 @@ id = TextMobject("- $Cai1Hsu$ -").scale(1.4).shift(DOWN * 0.6)
 class problem(Scene):
     def construct(self,numberplane,avater):
         problem = TextMobject("已知$m$,$n$$(m<n)$为两个正实数, $f(x)=\\left|\\log_{2}{x}\\right|$(定义域为$[m^{2},n]$)且$f(m)=f(n)$，若$f(x)$的最大值为$2$，求$\\log_{m}{(n-2m)}$的值。").scale(0.8)
-        #上色Begin
         i2 = 0
         HighLightsIndex = [2,4,6,8,17,19,27,35,38,42,44,47,49,53,55,68,70,73]
         HighLightsColors = [RED_C,RED_C,RED_C,RED_C,TEAL_C,YELLOW,YELLOW,RED_C,RED_C,TEAL_C,YELLOW,TEAL_C,YELLOW,TEAL_C,YELLOW,RED_C,RED_C,RED_C]
         for i in HighLightsIndex:
            problem[0][i].set_color(HighLightsColors[i2])
            i2+=1
-        #上色End
-        #timer = VGroup(
-        #            TextMobject("5"),
-        #            TextMobject("4"),
-        #            TextMobject("3"),
-        #            TextMobject("2"),
-        #            TextMobject("1"))
         time = 5
         timer = VGroup()
         for a in range(time,1,-1):
@@ -47,27 +39,14 @@ class problem(Scene):
         for a in range(1,timer - 1):
             self.play(Transform(timer[0],timer[a],run_time=0.7)
             self.wait(0.3)
-        #self.play(Transform(timer[0],timer[1]),run_time=0.7)
-        #self.wait(0.3)
-        #self.play(Transform(timer[0],timer[2]),run_time=0.7)
-        #self.wait(0.3)
-        #self.play(Transform(timer[0],timer[3]),run_time=0.7)
-        #self.wait(0.3)
-        #self.play(Transform(timer[0],timer[4]),run_time=0.7)
-        #self.wait(0.3)
-        
         self.play(FadeOut(timer[0]))
         
-        #return
         self.play(problem.scale,0.95,problem.to_edge, UP,run_time=0.5)
         line = Line(start=LEFT*6.5,end=RIGHT*6.5).shift(UP*2.4).set_color(BLUE)
         self.play(ShowCreation(line),run_time=0.5)
-        #Proof Begin
         
         MostImportantThing = TextMobject("解:").move_to(LEFT*6.2+UP*1.9)
         self.play(Write(MostImportantThing))
-        # mp = NumberPlane().add_coordinates()
-        # self.add(mp)
         
         Proofs = TextMobject(
             "$\\because f(m) = f(n)$\\\\",
@@ -82,9 +61,7 @@ class problem(Scene):
             "$\\because -g(m)=g(\\frac{1}{m})=g(n)$\\\\",
             "$\\therefore -g(m^{2})>g(n)$\\\\",
             "$\\because f(m^{2})=-g(m^{2}),f(n)=g(n)$\\\\"
-            #TODO
         ).scale(0.7).shift(DOWN*1.2)
-        #print("IMHERE")
         Proofs2 = TextMobject(
             "$\\therefore f(m^{2})>f(n)$\\\\",
             "$\\therefore f(x)_{max}=f(m^{2})=\\left|\\log_{2}{m^{2}}\\right|=-\\log_{2}{m^{2}}=2$\\\\",
@@ -94,7 +71,6 @@ class problem(Scene):
             ).scale(0.7).shift(RIGHT*2.7+UP*0.4)
         TypeOfEachProofs = [because,because,therefore,therefore,other,because,therefore,therefore,therefore,because,therefore,because,therefore,therefore,therefore,therefore,therefore]
         funcGgraphy = FunctionGraph(lambda x:np.log2(x),x_min = 0.12,x_max=5)
-        #print("\n\nHere\n\n")
         axe2 = Axes(
             x_min=-1,y_min=-3,
             x_max=5 ,y_max= 3
@@ -193,13 +169,11 @@ class welcome(Scene):
         self.wait(0.5)
         self.play(ShowCreation(np,run_time=1.5))
         self.play(ShowCreation(c))
-        self.play(c.rotate, -3 * PI / 4,c.scale,0.4,c.scale,0.97,c.shift,UP * 1.4)
+        self.play(c.rotate, -3 * PI / 4,c.scale,0.4*0.97,c.shift,UP * 1.4)
         self.play(Write(id),FadeIn(avater))
-        #self.play(FadeIn(avater))
-        self.remove(c);
+        self.remove(c)
         self.play(ShowCreation(links))
         self.wait(1.5)
         self.play(avater.scale,0.3,avater.move_to,LEFT * 6.4 + UP * 3.15,FadeOut(links),FadeOut(id),np.fade,0.6)
-        #self.wait()
         problem.construct(self,np,avater)
         end.construct(self)
